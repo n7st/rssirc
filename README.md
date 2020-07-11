@@ -13,7 +13,7 @@ Download a binary for your system from the releases page.
 You will need a working Go development environment.
 
 ```
-% go install github.com/n7st/rssirc
+% go get -u github.com/n7st/rssirc
 ```
 
 ## Configuration

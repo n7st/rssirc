@@ -1,4 +1,4 @@
-module gitlab.com/n7st/rssirc
+module github.com/n7st/rssirc
 
 go 1.14
 

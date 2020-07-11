@@ -1,7 +1,6 @@
 package rssfeed
 
 import (
-	"fmt"
 	"reflect"
 	"testing"
 
@@ -62,7 +61,6 @@ func TestCacheClean(t *testing.T) {
 			expected := NewCache(3)
 
 			for _, item := range tt.args {
-				fmt.Printf("Length: %d\n", len(c.Items))
 				c.Save(item)
 			}
 

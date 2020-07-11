@@ -11,7 +11,7 @@ import (
 	"github.com/sirupsen/logrus"
 	irc "github.com/thoj/go-ircevent"
 
-	"gitlab.com/n7st/rssirc/internal/pkg/util"
+	"github.com/n7st/rssirc/internal/pkg/util"
 )
 
 // Bot contains the IRC bot.
