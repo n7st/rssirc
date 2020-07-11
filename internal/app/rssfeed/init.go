@@ -22,18 +22,21 @@ type Poller struct {
 	Config *util.RSSConfig
 	Logger *logrus.Logger
 	Parser *gofeed.Parser
-}
 
-var firstRun = true
+	// If true, the poller is on its first run and shouldn't announce the last
+	// items from the feed.
+	FirstRun bool
+}
 
 // NewPoller sets up a new web poller for scraping the given RSS feed.
 func NewPoller(config *util.RSSConfig, bot *rssbot.Bot, logger *logrus.Logger) *Poller {
 	return &Poller{
-		Bot:    bot,
-		Cache:  NewCache(config.MaxHistory),
-		Config: config,
-		Logger: logger,
-		Parser: gofeed.NewParser(),
+		Bot:      bot,
+		Cache:    NewCache(config.MaxHistory),
+		Config:   config,
+		FirstRun: true,
+		Logger:   logger,
+		Parser:   gofeed.NewParser(),
 	}
 }
 
@@ -78,7 +81,7 @@ func (p *Poller) announce(feed *gofeed.Feed) {
 		if !p.Cache.Exists(item.Title) {
 			p.Cache.Save(item)
 
-			if !firstRun {
+			if !p.FirstRun {
 				message := fmt.Sprintf("%s %s", item.Title, item.Link)
 
 				if len(p.Config.Channels) > 0 {
@@ -93,11 +96,10 @@ func (p *Poller) announce(feed *gofeed.Feed) {
 		}
 	}
 
-	if firstRun {
+	if p.FirstRun {
 		// The first run should just populate the cache. Future runs
 		// will announce new feed items.
 		p.Logger.Debug("Cache populated")
-
-		firstRun = false
+		p.FirstRun = false
 	}
 }
