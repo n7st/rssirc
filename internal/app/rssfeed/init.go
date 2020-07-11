@@ -11,8 +11,8 @@ import (
 	"github.com/mmcdole/gofeed"
 	"github.com/sirupsen/logrus"
 
-	"gitlab.com/n7st/rssirc/internal/app/rssbot"
-	"gitlab.com/n7st/rssirc/internal/pkg/util"
+	"github.com/n7st/rssirc/internal/app/rssbot"
+	"github.com/n7st/rssirc/internal/pkg/util"
 )
 
 // Poller contains details for polling RSS feeds.
