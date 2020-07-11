@@ -5,7 +5,11 @@
 // items.
 package rssfeed
 
-import "github.com/mmcdole/gofeed"
+import (
+	"sync"
+
+	"github.com/mmcdole/gofeed"
+)
 
 // ItemMap is a map containing items by their title.
 type ItemMap map[string]*gofeed.Item
@@ -15,6 +19,8 @@ type Cache struct {
 	Items  ItemMap
 	Order  []string
 	Length int
+
+	rwm sync.RWMutex
 }
 
 // NewCache creates a new, empty cache.
@@ -27,6 +33,8 @@ func NewCache(length int) *Cache {
 
 // Save saves items to the cache.
 func (c *Cache) Save(item *gofeed.Item) {
+	c.rwm.RLock()
+	defer c.rwm.RUnlock()
 	c.Order = append(c.Order, item.Title)
 	c.Items[item.Title] = item
 
@@ -36,6 +44,8 @@ func (c *Cache) Save(item *gofeed.Item) {
 
 // Exists checks whether an item exists in the cache.
 func (c *Cache) Exists(title string) bool {
+	c.rwm.RLock()
+	defer c.rwm.RUnlock()
 	return c.Items[title] != nil
 }
 
