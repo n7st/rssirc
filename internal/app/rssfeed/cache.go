@@ -20,7 +20,7 @@ type Cache struct {
 // NewCache creates a new, empty cache.
 func NewCache(length int) *Cache {
 	return &Cache{
-		Items:  ItemMap(make(map[string]*gofeed.Item)),
+		Items:  ItemMap(make(ItemMap)),
 		Length: length,
 	}
 }
@@ -47,7 +47,7 @@ func (c *Cache) Clean() {
 
 	newCacheOrder := c.Order[len(c.Order)-c.Length:]
 
-	items := ItemMap(make(map[string]*gofeed.Item))
+	items := ItemMap(make(ItemMap))
 
 	for _, key := range newCacheOrder {
 		items[key] = c.Items[key]
