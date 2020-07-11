@@ -11,7 +11,11 @@ Download a binary for your system from the
 
 ## Configuration
 
-Example configuration:
+### Linux
+
+Configuration is read from `$HOME/.config/netsplit/rssirc/config.yaml`.
+
+### Example configuration
 
 ```yaml
 log_level: info
@@ -44,10 +48,6 @@ rss:
             - "#firstchannel"
             - "#secondchannel"
 ```
-
-### Linux
-
-Configuration is read from `$HOME/.config/netsplit/rssirc/config.yaml`.
 
 ## Running
 
