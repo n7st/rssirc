@@ -35,7 +35,7 @@ jobs:
         fi
 
     - name: Build
-      run: go build -v cmd/rssirc/main.go
+      run: go install ./...
 
     - name: Test
       run: go test -v ./...
