@@ -118,6 +118,10 @@ func loadConfigData(params []string) ([]byte, error) {
 
 // applyDefaults sets default configuration values for items which are missing.
 func (c *Config) applyDefaults() {
+	if c.IRC == nil {
+		c.IRC = &ircConfig{}
+	}
+
 	if c.IRC.Port == 0 {
 		c.IRC.Port = defaultPort
 	}
