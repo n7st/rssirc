@@ -6,15 +6,8 @@
 
 ### Using a pre-compiled binary
 
-Download a binary for your system from the releases page.
-
-### From source
-
-You will need a working Go development environment.
-
-```
-% go get -u github.com/n7st/rssirc
-```
+Download a binary for your system from the
+[releases page](https://github.com/n7st/rssirc/releases/).
 
 ## Configuration
 
