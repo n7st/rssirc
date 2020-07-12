@@ -21,7 +21,10 @@ func (b *Bot) callback001(e *irc.Event) {
 	}
 
 	if b.Config.IRC.NickservPassword != "" {
-		b.Connection.Privmsgf("nickserv", "identify %s", b.Config.IRC.NickservPassword)
+		b.Connection.Privmsgf("nickserv", "identify %s %s",
+			b.Config.IRC.NickservAccount,
+			b.Config.IRC.NickservPassword,
+		)
 	} else {
 		b.joinChannels()
 	}

@@ -34,6 +34,7 @@ type ircConfig struct {
 	ReconnectDelay   int      `yaml:"reconnect_delay"`
 	Modes            string   `yaml:"modes"`
 	Nickname         string   `yaml:"nickname"`
+	NickservAccount  string   `yaml:"nickserv_account"`
 	NickservPassword string   `yaml:"nickserv_password"`
 	Port             int      `yaml:"port"`
 	RealName         string   `yaml:"real_name"`
@@ -136,6 +137,10 @@ func (c *Config) applyDefaults() {
 
 	if c.IRC.RealName == "" {
 		c.IRC.RealName = c.IRC.Nickname
+	}
+
+	if c.IRC.NickservAccount == "" {
+		c.IRC.NickservAccount = c.IRC.Nickname
 	}
 
 	if c.IRC.ReconnectDelay == 0 {
