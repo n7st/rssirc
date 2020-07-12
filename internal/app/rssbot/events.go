@@ -10,7 +10,6 @@ import irc "github.com/thoj/go-ircevent"
 func events(b *Bot) map[string]func(e *irc.Event) {
 	return map[string]func(e *irc.Event){
 		"001": b.callback001,
-		"900": b.callback900,
 	}
 }
 
@@ -25,12 +24,7 @@ func (b *Bot) callback001(e *irc.Event) {
 			b.Config.IRC.NickservAccount,
 			b.Config.IRC.NickservPassword,
 		)
-	} else {
-		b.joinChannels()
 	}
-}
 
-// callback900 runs when the bot receives confirmation of nickserv login.
-func (b *Bot) callback900(e *irc.Event) {
 	b.joinChannels()
 }
