@@ -29,6 +29,7 @@ irc:
     max_reconnect: 3
     modes: +B
     nickname: rssbottest
+    nickserv_account: my-nickserv-account
     nickserv_password: my-nickserv-password
     use_tls: true
 
