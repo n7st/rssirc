@@ -5,6 +5,7 @@
 package util
 
 import (
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"time"
@@ -107,11 +108,9 @@ func loadConfigData(params []string) ([]byte, error) {
 
 		if folder != nil {
 			data, err = folder.ReadFile(configFilename)
+		} else {
+			err = errors.New("config.yaml doesn't exist in the global settings directory")
 		}
-	}
-
-	if err != nil {
-		panic(err)
 	}
 
 	return data, err
@@ -151,12 +150,17 @@ func (c *Config) applyDefaults() {
 		if poller.MaxHistory == 0 {
 			poller.MaxHistory = defaultCacheLen
 		}
+		logrus.Error(poller.PollDelay)
 
 		if poller.PollDelay < 1 {
 			panic("the minimum poll delay is 1 minute")
 		}
 
 		poller.PollDelayMinutes = time.Minute * intToDuration(poller.PollDelay)
+	}
+
+	if c.IRC.Server == "" {
+		panic("a server IP address or hostname is required")
 	}
 
 	c.IRC.Hostname = fmt.Sprintf("%s:%d", c.IRC.Server, c.IRC.Port)

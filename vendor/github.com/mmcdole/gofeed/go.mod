@@ -1,7 +1,5 @@
 module github.com/mmcdole/gofeed
 
-go 1.14
-
 require (
 	github.com/PuerkitoBio/goquery v1.5.0
 	github.com/codegangsta/cli v1.20.0

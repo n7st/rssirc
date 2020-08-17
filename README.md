@@ -13,7 +13,8 @@ Download a binary for your system from the
 
 ### Linux
 
-Configuration is read from `$HOME/.config/netsplit/rssirc/config.yaml`.
+Configuration is read from `$HOME/.config/netsplit/rssirc/config.yaml`. If you
+are not providing a custom filename, this file must exist.
 
 ### Example configuration
 

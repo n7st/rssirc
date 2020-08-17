@@ -1,0 +1,30 @@
+log_level: info
+irc:
+    channels:
+        - "#firstchannel"
+        - "#secondchannel"
+    server: irc.snoonet.org
+    port: 6697
+    ident: rssbottest
+    max_reconnect: 3
+    modes: +B
+    nickname: rssbottest
+    nickserv_account: my-nickserv-account
+    nickserv_password: my-nickserv-password
+    use_tls: true
+
+    # Additional options:
+    # debug: true # Enable IRC debugging
+rss:
+    -
+        feed_url: https://www.nasa.gov/rss/dyn/breaking_news.rss
+        # poll_delay is in minutes and must be 1 or greater.
+        # The default is hourly.
+        poll_delay: 60
+        # max_history defines the cached RSS feed item length
+        max_history: 3
+        # channels defines which IRC channels notifications for new feed items
+        # will be sent to
+        channels:
+            - "#firstchannel"
+            - "#secondchannel"

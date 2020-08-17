@@ -2,6 +2,8 @@
 github.com/PuerkitoBio/goquery
 # github.com/andybalholm/cascadia v1.0.0
 github.com/andybalholm/cascadia
+# github.com/keegancsmith/rpc v1.2.0
+## explicit
 # github.com/konsorten/go-windows-terminal-sequences v1.0.3
 github.com/konsorten/go-windows-terminal-sequences
 # github.com/mmcdole/gofeed v1.0.0
@@ -19,14 +21,16 @@ github.com/shibukawa/configdir
 # github.com/sirupsen/logrus v1.6.0
 ## explicit
 github.com/sirupsen/logrus
+# github.com/stamblerre/gocode v1.0.0
+## explicit
 # github.com/thoj/go-ircevent v0.0.0-20190807115034-8e7ce4b5a1eb
 ## explicit
 github.com/thoj/go-ircevent
-# golang.org/x/net v0.0.0-20181220203305-927f97764cc3
+# golang.org/x/net v0.0.0-20200625001655-4c5254603344
 golang.org/x/net/html
 golang.org/x/net/html/atom
 golang.org/x/net/html/charset
-# golang.org/x/sys v0.0.0-20190422165155-953cdadca894
+# golang.org/x/sys v0.0.0-20200323222414-85ca7c5b95cd
 golang.org/x/sys/unix
 # golang.org/x/text v0.3.2
 golang.org/x/text/encoding
@@ -46,6 +50,10 @@ golang.org/x/text/internal/utf8internal
 golang.org/x/text/language
 golang.org/x/text/runes
 golang.org/x/text/transform
+# golang.org/x/tools v0.0.0-20200817023811-d00afeaade8f
+## explicit
+# golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1
+## explicit
 # gopkg.in/yaml.v2 v2.3.0
 ## explicit
 gopkg.in/yaml.v2

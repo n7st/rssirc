@@ -2,6 +2,8 @@
 package main
 
 import (
+	"os"
+
 	"github.com/sirupsen/logrus"
 
 	"github.com/n7st/rssirc/internal/app/rssbot"
@@ -11,7 +13,14 @@ import (
 
 // main sets up an IRC bot and many RSS feed pollers.
 func main() {
-	config := util.NewConfig()
+	var config *util.Config
+
+	if len(os.Args) > 1 {
+		config = util.NewConfig(os.Args[1])
+	} else {
+		config = util.NewConfig()
+	}
+
 	logger := logrus.New()
 
 	logger.SetLevel(config.LogLevel)
