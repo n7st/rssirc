@@ -31,7 +31,7 @@ func Init(config *util.Config, logger *logrus.Logger) *Bot {
 
 	if config.IRC.UseTLS {
 		connection.UseTLS = true
-		connection.TLSConfig = &tls.Config{InsecureSkipVerify: true}
+		connection.TLSConfig = &tls.Config{}
 	}
 
 	err := connection.Connect(config.IRC.Hostname)
