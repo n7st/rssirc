@@ -1,0 +1,53 @@
+---
+name: 'Release'
+
+on:
+  release:
+    types: [ published ]
+
+jobs:
+  release:
+    name: 'Build release binary'
+
+    runs-on: 'ubuntu-latest'
+
+    strategy:
+      matrix:
+        include:
+          - arch: 'aarch64'
+            distro: 'ubuntu_latest'
+          - arch: 'armv7'
+            distro: 'ubuntu_latest'
+
+    env:
+      CGO_ENABLED: 0
+      GOOS: 'linux'
+      GO111MODULE: 'on'
+
+    steps:
+      - name: 'Set up Go 1.19'
+        env:
+          RUNNER_TEMP: '/tmp'
+        uses: 'actions/setup-go@v2'
+        with:
+          go-version: '^1.19'
+        id: 'go'
+
+      - name: 'Check out code'
+        uses: 'actions/checkout@v2'
+
+      - name: 'Run tests'
+        run: 'go test -v ./...'
+
+      - name: 'Build binary'
+        run: 'go build -o rssirc ./cmd/rssirc/main.go'
+
+      - name: 'Make binary executable'
+        run: 'chmod +x rssirc*'
+
+      - name: 'Attach binary to release'
+        uses: 'skx/github-action-publish-binaries@master'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          args: 'rssirc*'
