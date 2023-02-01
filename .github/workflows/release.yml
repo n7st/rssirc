@@ -11,14 +11,6 @@ jobs:
 
     runs-on: 'ubuntu-latest'
 
-    strategy:
-      matrix:
-        include:
-          - arch: 'aarch64'
-            distro: 'ubuntu_latest'
-          - arch: 'armv7'
-            distro: 'ubuntu_latest'
-
     env:
       CGO_ENABLED: 0
       GOOS: 'linux'
@@ -38,7 +30,7 @@ jobs:
 
       - name: 'Build binary'
         run: |
-          go build -o rssirc ./cmd/rssirc/main.go
+          go build -o rssirc-amd64 ./cmd/rssirc/main.go
           chmod +x rssirc*
 
       - name: 'Attach binary to release'
@@ -46,4 +38,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          args: 'rssirc*'
+          args: 'rssirc-amd64'
