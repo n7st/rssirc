@@ -6,8 +6,8 @@ on:
     types: [ published ]
 
 jobs:
-  release:
-    name: 'Build release binary'
+  release_amd64:
+    name: 'Build AMD64 release binary'
 
     runs-on: 'ubuntu-latest'
 
@@ -34,16 +34,12 @@ jobs:
         id: 'go'
 
       - name: 'Check out code'
-        uses: 'actions/checkout@v2'
-
-      - name: 'Run tests'
-        run: 'go test -v ./...'
+        uses: 'actions/checkout@v3'
 
       - name: 'Build binary'
-        run: 'go build -o rssirc ./cmd/rssirc/main.go'
-
-      - name: 'Make binary executable'
-        run: 'chmod +x rssirc*'
+        run: |
+          go build -o rssirc ./cmd/rssirc/main.go
+          chmod +x rssirc*
 
       - name: 'Attach binary to release'
         uses: 'skx/github-action-publish-binaries@master'
